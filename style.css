@@ -1,0 +1,572 @@
+/* ====================================
+    1. CSS Reset and Variables (Theming)
+    ===================================== */
+    :root {
+        /* Light Mode Colors */
+        --background-color: #f7f9fc;
+        --text-color: #333;
+        --primary-color: #007bff; /* Android Blue */
+        --secondary-color: #6c757d;
+        --card-background: rgba(255, 255, 255, 0.85); /* Semi-transparent for Glassmorphism */
+        --border-color: #e0e6ed;
+        --shadow-color: rgba(0, 0, 0, 0.08);
+        --glass-blur: 10px;
+
+        /* NEW HIGHLIGHT VARIABLES (LIGHT MODE VALUES) */
+        --in-text-dark-highlight: var(--primary-color); /* Highlight with primary color in light mode */
+        --card-accent-highlight: var(--primary-color); /* Use primary color for card titles/highlights */
+    }
+    
+    /* Dark Mode Colors */
+    .dark-mode {
+        --background-color: #1e1e2f;
+        --text-color: #e0e0e0;
+        --primary-color: #3f9bff; /* Lighter Blue for contrast */
+        --secondary-color: #8cb5f3;
+        --background-color-bg: #4990dd;
+        --card-background: rgba(37, 37, 56, 0.85); /* Semi-transparent dark */
+        --border-color: #3a3a4c;
+        --shadow-color: rgba(0, 0, 0, 0.4);
+
+        /* NEW HIGHLIGHT VARIABLES (DARK MODE VALUES) */
+        --in-text-dark-highlight: white; /* User's preferred white for dark mode description */
+        --card-accent-highlight: #75c8ff; /* User's preferred blue for dark mode cards */
+    }
+    
+    /* Base Styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Poppins', sans-serif;
+        line-height: 1.6;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        transition: background-color 0.3s, color 0.3s;
+        scroll-behavior: smooth;
+        /* Background for glassmorphism effect */
+        background-image: radial-gradient(circle at top right, var(--primary-color) 0%, transparent 40%),
+                                 radial-gradient(circle at bottom left, var(--background-color-bg) 0%, transparent 40%);
+        background-size: 100% 100%;
+    }
+    
+    /* General Styles */
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    section {
+        padding: 80px 0;
+        min-height: 100vh;
+    }
+    
+    h2 {
+        font-size: 2.5em;
+        text-align: center;
+        margin-bottom: 50px;
+        color: var(--primary-color);
+        font-weight: 700;
+    }
+    
+    /* ====================================
+        2. Navigation and Header
+        ===================================== */
+    .header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        /* Glassmorphism Navigation */
+        background-color: var(--card-background);
+        backdrop-filter: blur(var(--glass-blur));
+        -webkit-backdrop-filter: blur(var(--glass-blur));
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: 0 4px 12px var(--shadow-color);
+        padding: 15px 0;
+        transition: background-color 0.3s;
+    }
+    
+    .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .logo {
+        font-size: 1.8em;
+        font-weight: 700;
+        color: var(--primary-color);
+        text-decoration: none;
+    }
+    
+    .nav-list {
+        list-style: none;
+        display: flex;
+    }
+    
+    .nav-list a {
+        color: var(--text-color);
+        text-decoration: none;
+        padding: 10px 15px;
+        margin-left: 10px;
+        font-weight: 600;
+        position: relative;
+        transition: color 0.3s;
+    }
+    
+    .nav-list a:hover {
+        color: var(--primary-color);
+    }
+    
+    .nav-list a::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: 5px;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary-color);
+        transition: all 0.3s ease-in-out;
+        transform: translateX(-50%);
+    }
+    
+    .nav-list a:hover::after {
+        width: calc(100% - 20px);
+    }
+    
+    /* Theme Toggle Button & New Menu Toggle Button */
+    .theme-toggle, .menu-toggle { 
+        background: none;
+        border: none;
+        font-size: 1.5em;
+        cursor: pointer;
+        color: var(--text-color);
+        padding: 5px;
+        transition: color 0.3s;
+    }
+    .theme-toggle {
+        margin-left: 10px; /* Adjusted spacing for mobile layout */
+    }
+    .menu-toggle {
+        display: none; /* HIDE BY DEFAULT ON DESKTOP */
+    }
+    
+    
+    .theme-toggle:hover, .menu-toggle:hover {
+        color: var(--primary-color);
+    }
+    
+    /* ====================================
+        3. Hero Section
+        ===================================== */
+    #hero {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding-top: 0;
+    }
+    
+    .hero-content h1 {
+        font-size: 4.5em;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+    
+    .hero-content h3 {
+        font-size: 2em;
+        color: #a5c5ff;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+    
+    .hero-content .tagline {
+        font-size: 1.2em;
+        color: var(--in-text-dark-highlight);
+        max-width: 600px;
+        margin: 0 auto 30px;
+    }
+    .hero-content .role-tag {
+        font-size: 1.1em;
+        color: #a5c5ff;;
+    }
+    
+    .cta-button {
+        display: inline-block;
+        background-color: var(--primary-color);
+        color: var(--background-color);
+        padding: 12px 30px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: 600;
+        transition: background-color 0.3s, transform 0.2s;
+        border: 2px solid var(--primary-color);
+    }
+    
+    .cta-button:hover {
+        background-color: transparent;
+        color: var(--primary-color);
+        transform: translateY(-2px);
+    }
+    
+    /* ====================================
+        4. Glassmorphism Card Styles
+        ===================================== */
+    .about-card, .skill-card, .project-card, .contact-form-container {
+        background-color: var(--card-background);
+        backdrop-filter: blur(var(--glass-blur));
+        -webkit-backdrop-filter: blur(var(--glass-blur));
+        border: 1px solid var(--border-color);
+        box-shadow: 0 8px 32px 0 var(--shadow-color);
+    }
+    
+    /* 5. About Section (MODIFIED FOR USER REQUEST) */
+    
+    /* 1. Description Text Centered */
+    .about-description {
+        max-width: 850px;
+        margin: 0 auto 40px; /* Center container and add spacing below */
+    }
+    .about-description p {
+        text-align: center; /* Center alignment as requested */
+        margin-bottom: 20px;
+    }
+    
+    /* 2. Company Value Card */
+    .about-card.about-company-value {
+        max-width: 850px;
+        margin: 0 auto 40px; /* Center card and add spacing below */
+        border-left: 4px solid var(--primary-color);
+        padding: 30px;
+        border-radius: 10px;
+    }
+    .about-card.about-company-value h3 {
+        color: var(--primary-color);
+        margin-bottom: 10px;
+    }
+    
+    
+    /* 3. Education and Languages (Horizontal/Grid Layout) */
+    .about-info-row {
+        display: grid; /* Use grid for horizontal/responsive columns */
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 20px;
+    }
+    .about-info-row .about-card {
+        /* Inherits general .about-card styles */
+        padding: 30px;
+        border-radius: 10px;
+    }
+    .about-info-row .about-card h3 {
+             color: var(--primary-color);
+             margin-bottom: 10px;
+    }
+    .about-info-row .card-separator {
+        border: none;
+        border-top: 1px solid var(--border-color); 
+        margin: 15px 0;
+    }
+    /* NEW: Rule to apply highlight color for strong tags in the main description paragraph */
+.about-description .highlight-main {
+    color: var(--in-text-dark-highlight);
+}
+
+/* NEW: Rule to apply the card accent highlight color to strong tags within the cards */
+/* This covers the Education, Languages, and Company Value cards */
+.about-card strong {
+    color: var(--card-accent-highlight);
+    font-weight: 600; /* Ensuring they are bold */
+}
+    /* Old about-grid/details/info styles are removed/overridden */
+    
+    /* 6. Skills Section */
+    .skills-category h3 {
+        color: #31acff;
+        text-align: center;
+    }
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Slightly smaller for more items */
+        gap: 20px;
+    }
+    
+    .skill-card {
+        padding: 25px;
+        border-radius: 8px;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+        border-bottom: 3px solid var(--primary-color);
+    }
+    
+    .skill-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 40px 0 var(--shadow-color);
+    }
+    
+    .skill-card p {
+        font-weight: 600;
+        margin-top: 10px;
+    }
+    
+    .skill-icon {
+        font-size: 2em;
+        color: var(--primary-color);
+    }
+    
+    /* 7. Projects Section */
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+    
+    .project-card {
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s;
+    }
+    
+    .project-card:hover {
+        transform: scale(1.03);
+        box-shadow: 0 10px 40px 0 var(--shadow-color);
+    }
+    
+    .project-content {
+        padding: 25px;
+    }
+    
+    .project-content h3 {
+        color: var(--primary-color);
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+    
+    .github-button {
+        display: inline-block;
+        background-color: var(--secondary-color);
+        color: var(--background-color);
+        padding: 10px 20px;
+        margin-top: 15px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: 500;
+        transition: background-color 0.3s;
+    }
+    
+    .github-button:hover {
+        background-color: #5a6268;
+    }
+    
+    /* 8. Contact Section */
+    .contact-grid {
+        display: flex;
+        justify-content: space-around;
+        gap: 40px;
+    }
+    
+    .contact-info, .contact-form-container {
+        flex-basis: 45%;
+    }
+    .contact-info h3 {
+        color: var(--primary-color);
+        margin-bottom: 15px;
+    }
+    
+    .contact-item {
+        display: flex;
+        align-items: flex-start; /* Aligned to top for multi-line address */
+        margin-bottom: 25px;
+        font-size: 1.1em;
+    }
+    
+    .contact-item i {
+        font-size: 1.5em;
+        color: var(--primary-color);
+        margin-right: 15px;
+        flex-shrink: 0; /* Prevents icon from shrinking */
+        margin-top: 2px; /* Slight adjustment for alignment */
+    }
+
+    /* === NEW/REFINED: Contact Link Styling for Clickability and Hover === */
+    .contact-item .contact-link {
+        color: var(--text-color); /* Uses primary text color */
+        text-decoration: none; /* Removes default link underline */
+        transition: color 0.3s, text-decoration 0.3s;
+        /* Links inherit font-size from parent .contact-item */
+    }
+
+    .contact-item .contact-link:hover {
+        color: var(--primary-color); /* Hover color from theme */
+        text-decoration: underline; /* Provides clear visual feedback */
+    }
+    /* ==================================================================== */
+
+    
+    .contact-form-container {
+        padding: 30px;
+        border-radius: 10px;
+    }
+    
+    .contact-form label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 600;
+    }
+    
+    .contact-form input, .contact-form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        /* Maintain readability inside glass card */
+        background-color: var(--background-color); 
+        color: var(--text-color);
+        transition: border-color 0.3s;
+    }
+    
+    .contact-form input:focus, .contact-form textarea:focus {
+        border-color: var(--primary-color);
+        outline: none;
+    }
+    
+    .contact-form button {
+        cursor: pointer;
+        width: 100%;
+    }
+    
+    /* 9. Footer */
+    .footer {
+        text-align: center;
+        padding: 20px 0;
+        border-top: 1px solid var(--secondary-color);
+        color: var(--secondary-color);
+        font-size: 0.9em;
+    }
+    
+    /* 10. Responsiveness (Mobile Optimization) */
+    @media (max-width: 992px) {
+        /* SHOW BURGER ICON & Adjust alignment */
+
+        .cta-secondary{
+            margin-top: 10px;
+        }
+        .menu-toggle {
+            display: block; 
+        }
+        .nav-content {
+            justify-content: space-between; /* Re-align items to put logo on left, buttons on right */
+        }
+        .logo {
+            margin-right: 0; 
+            order: 1;
+        }
+        .menu-toggle {
+            order: 2;
+        }
+        .theme-toggle {
+            order: 3;
+        }
+    
+        /* COLLAPSIBLE MOBILE MENU STYLES */
+        .nav-list {
+            display: none; /* HIDE BY DEFAULT */
+            flex-direction: column;
+            position: absolute;
+            top: 100%; /* Position right below the header */
+            left: 0;
+            width: 100%;
+            padding: 10px 0;
+            z-index: 999;
+            /* Glassmorphism background for the dropdown menu */
+            background-color: var(--card-background);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border-top: 1px solid var(--border-color);
+            box-shadow: 0 8px 16px var(--shadow-color);
+        }
+    
+        .nav-list.active {
+            display: flex; /* SHOW MENU WHEN ACTIVE CLASS IS TOGGLED BY JS */
+        }
+    
+        .nav-list li {
+            width: 100%;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .nav-list li:last-child {
+            border-bottom: none;
+        }
+    
+        .nav-list a {
+            display: block; /* Make links fill the width for easier clicking */
+            padding: 15px 0;
+            margin-left: 0; /* Remove existing margin */
+        }
+    
+        .nav-list a::after {
+            display: none; /* Hide underline effect on mobile */
+        }
+    
+        /* Original overrides that need to stay or be adjusted */
+        .hero-content h1 {
+            font-size: 3.5em;
+        }
+        .hero-content h3 {
+            font-size: 1.5em;
+        }
+        .contact-grid { 
+            flex-direction: column;
+        }
+        /* Adjusted text alignment for mobile readability */
+        .about-description p, .tagline { 
+            text-align: center; 
+        }
+        .contact-form-container, .contact-info {
+            flex-basis: 100%;
+        }
+        section {
+            min-height: auto; /* Remove 100vh on mobile */
+        }
+    }
+    
+    @media (max-width: 600px) {
+        .cta-secondary{
+            margin-top: 10px;
+        }
+        h2 {
+            font-size: 2em;
+        }
+        .hero-content h1 {
+            font-size: 2.5em;
+        }
+        .hero-content h3 {
+            font-size: 1.2em;
+        }
+        .hero-content .tagline {
+            font-size: 1em;
+        }
+        .contact-form-container {
+            padding: 20px;
+        }
+        /* === Fixes for Mobile Contact Visibility === */
+        .contact-item i{
+           /* Corrected typo and set a readable size */
+           font-size: 1.2em; 
+        }
+        .contact-item{
+             /* Ensuring link text is readable on mobile */
+             font-size: 1em;
+        }
+        /* =========================================== */
+        section {
+            padding: 60px 0;
+        }
+    }
