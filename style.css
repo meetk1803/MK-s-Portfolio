@@ -4,7 +4,7 @@
     :root {
         /* Light Mode Colors */
         --background-color: #f7f9fc;
-        --text-color: #333;
+        --text-color: #161616;
         --primary-color: #007bff; /* Android Blue */
         --secondary-color: #6c757d;
         --card-background: rgba(255, 255, 255, 0.85); /* Semi-transparent for Glassmorphism */
@@ -20,7 +20,7 @@
     /* Dark Mode Colors */
     .dark-mode {
         --background-color: #1e1e2f;
-        --text-color: #e0e0e0;
+        --text-color: #f1efef;
         --primary-color: #3f9bff; /* Lighter Blue for contrast */
         --secondary-color: #8cb5f3;
         --background-color-bg: #4990dd;
@@ -173,25 +173,27 @@
     
     .hero-content h1 {
         font-size: 4.5em;
-        margin-bottom: 10px;
+        margin-top: -20px;
+        margin-bottom: -20px;
         font-weight: 700;
     }
     
     .hero-content h3 {
         font-size: 2em;
         color: #a5c5ff;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         font-weight: 600;
     }
     
     .hero-content .tagline {
         font-size: 1.2em;
         color: var(--in-text-dark-highlight);
-        max-width: 600px;
-        margin: 0 auto 30px;
+        max-width: 900px;
+        margin: 0 auto 20px;
     }
     .hero-content .role-tag {
         font-size: 1.1em;
+        margin-bottom: 5px;
         color: #a5c5ff;;
     }
     
@@ -518,6 +520,8 @@
         /* Original overrides that need to stay or be adjusted */
         .hero-content h1 {
             font-size: 3.5em;
+            margin-top: 2px;
+            margin-bottom: 5px;
         }
         .hero-content h3 {
             font-size: 1.5em;
@@ -570,3 +574,96 @@
             padding: 60px 0;
         }
     }
+
+    /* Profile Image */
+.profile-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.profile-pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary-color);
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+.profile-pic:hover {
+    transform: scale(1.06);
+}
+
+/* App Icons */
+.app-icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 22px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: 2px solid var(--primary-color);
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+.app-icon:hover {
+    transform: scale(1.05);
+}
+
+/* ============================= */
+/* RESPONSIVE ADJUSTMENTS */
+/* ============================= */
+
+/* Medium screens (Tablets) */
+@media (max-width: 1024px) {
+
+    .profile-pic {
+        width: 135px;
+        height: 135px;
+        border-width: 3px;
+    }
+
+    .app-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 18px;
+        border-width: 2px;
+    }
+}
+
+/* Mobile screens */
+@media (max-width: 600px) {
+
+    .profile-container {
+        margin-top: 1.5rem;
+    }
+
+    .profile-pic {
+        width: 115px;
+        height: 115px;
+        border-width: 3px;
+    }
+
+    .app-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 16px;
+        margin-bottom: 0.75rem;
+    }
+}
+
+/* Very small screens (extra safety) */
+@media (max-width: 380px) {
+
+    .profile-pic {
+        width: 100px;
+        height: 100px;
+    }
+
+    .app-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 14px;
+    }
+}
